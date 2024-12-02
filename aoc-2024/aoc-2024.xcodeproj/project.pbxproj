@@ -12,6 +12,8 @@
 		87E4B3232CFE5BE900434898 /* Day01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31D2CFE5BE900434898 /* Day01.swift */; };
 		87E4B3242CFE5BE900434898 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31F2CFE5BE900434898 /* main.swift */; };
 		87E4B3292CFE648F00434898 /* InputDay01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B3282CFE648F00434898 /* InputDay01.swift */; };
+		87E4B32B2CFE748E00434898 /* Day02.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B32A2CFE748E00434898 /* Day02.swift */; };
+		87E4B32D2CFE74BB00434898 /* InputDay02.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B32C2CFE74BB00434898 /* InputDay02.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +35,8 @@
 		87E4B31D2CFE5BE900434898 /* Day01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day01.swift; sourceTree = "<group>"; };
 		87E4B31F2CFE5BE900434898 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		87E4B3282CFE648F00434898 /* InputDay01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDay01.swift; sourceTree = "<group>"; };
+		87E4B32A2CFE748E00434898 /* Day02.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day02.swift; sourceTree = "<group>"; };
+		87E4B32C2CFE74BB00434898 /* InputDay02.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDay02.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,7 @@
 			children = (
 				87E4B31C2CFE5BE900434898 /* Day.swift */,
 				87E4B31D2CFE5BE900434898 /* Day01.swift */,
+				87E4B32A2CFE748E00434898 /* Day02.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				87E4B3282CFE648F00434898 /* InputDay01.swift */,
+				87E4B32C2CFE74BB00434898 /* InputDay02.swift */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -158,6 +164,8 @@
 			files = (
 				87E4B3242CFE5BE900434898 /* main.swift in Sources */,
 				87E4B3232CFE5BE900434898 /* Day01.swift in Sources */,
+				87E4B32D2CFE74BB00434898 /* InputDay02.swift in Sources */,
+				87E4B32B2CFE748E00434898 /* Day02.swift in Sources */,
 				87E4B3212CFE5BE900434898 /* DayExecutor.swift in Sources */,
 				87E4B3222CFE5BE900434898 /* Day.swift in Sources */,
 				87E4B3292CFE648F00434898 /* InputDay01.swift in Sources */,
