@@ -6,7 +6,7 @@
 import Foundation
 
 protocol DayExecutable {
-    static func run() -> (part1: DayResult, part2: DayResult)
+    static func run(input: InputProviding) -> (part1: DayResult, part2: DayResult)
 }
 
 enum DayResult {

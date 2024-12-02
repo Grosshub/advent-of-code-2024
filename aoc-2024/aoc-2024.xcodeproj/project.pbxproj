@@ -11,6 +11,7 @@
 		87E4B3222CFE5BE900434898 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31C2CFE5BE900434898 /* Day.swift */; };
 		87E4B3232CFE5BE900434898 /* Day01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31D2CFE5BE900434898 /* Day01.swift */; };
 		87E4B3242CFE5BE900434898 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31F2CFE5BE900434898 /* main.swift */; };
+		87E4B3292CFE648F00434898 /* InputDay01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B3282CFE648F00434898 /* InputDay01.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		87E4B31C2CFE5BE900434898 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		87E4B31D2CFE5BE900434898 /* Day01.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day01.swift; sourceTree = "<group>"; };
 		87E4B31F2CFE5BE900434898 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		87E4B3282CFE648F00434898 /* InputDay01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDay01.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,11 +82,20 @@
 		87E4B3202CFE5BE900434898 /* aoc-2024 */ = {
 			isa = PBXGroup;
 			children = (
+				87E4B3272CFE647F00434898 /* Inputs */,
 				87E4B31B2CFE5BE900434898 /* Handlers */,
 				87E4B31E2CFE5BE900434898 /* Sources */,
 				87E4B31F2CFE5BE900434898 /* main.swift */,
 			);
 			path = "aoc-2024";
+			sourceTree = "<group>";
+		};
+		87E4B3272CFE647F00434898 /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				87E4B3282CFE648F00434898 /* InputDay01.swift */,
+			);
+			path = Inputs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 				87E4B3232CFE5BE900434898 /* Day01.swift in Sources */,
 				87E4B3212CFE5BE900434898 /* DayExecutor.swift in Sources */,
 				87E4B3222CFE5BE900434898 /* Day.swift in Sources */,
+				87E4B3292CFE648F00434898 /* InputDay01.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

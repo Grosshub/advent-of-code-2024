@@ -4,4 +4,4 @@
 //
 
 let executor = DayExecutor()
-executor.run(day: Day01.self)
+executor.run(day: Day01.self, input: InputDay01())
