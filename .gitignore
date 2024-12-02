@@ -1,0 +1,19 @@
+# Xcode-specific files and folders
+*.xcuserdata/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+build/
+
+# Ignore logs or temporary files
+*.log
+*.tmp
+
+# Ignore Swift Package Manager artifacts
+.swiftpm/
+
+# macOS System Files
+.DS_Store
+.AppleDouble
+.LSOverride
+
