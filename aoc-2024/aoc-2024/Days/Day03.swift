@@ -20,7 +20,31 @@ struct Day03: DayExecutable {
     }
 
     static func runPart2(_ input: any InputProviding) -> DayResult {
-        .error(.notImplemented)
+        let regexPattern = #"mul\((\d+),(\d+)\)"#
+        let disabledSegments = input.raw.split(separator: "don't()")
+        var totalSum = 0
+
+        do {
+            totalSum += try self.calculateMulSum(
+                regexPattern: regexPattern,
+                input: String(disabledSegments[0])
+            )
+            for segment in disabledSegments.dropFirst() {
+                let enabledSegments = segment
+                    .split(separator: "do()")
+                    .dropFirst()
+                    .joined()
+
+                totalSum += try self.calculateMulSum(
+                    regexPattern: regexPattern,
+                    input: enabledSegments
+                )
+            }
+            return .integer(totalSum)
+            
+        } catch {
+            return .error(.invalidInput)
+        }
     }
 }
 
