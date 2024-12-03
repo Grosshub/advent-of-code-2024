@@ -19,7 +19,3 @@ enum DayResult {
 enum DayError: Error {
     case notImplemented
 }
-
-enum Day: Int {
-    case day01 = 1
-}
