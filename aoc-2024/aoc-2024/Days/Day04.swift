@@ -11,7 +11,9 @@ struct Day04: DayExecutable {
     }
 
     static func runPart2(_ input: any InputProviding) -> DayResult {
-        .error(.notImplemented)
+        let gridRows = input.raw.split(separator: "\n").map(String.init)
+        guard !gridRows.isEmpty else { return .error(.invalidInput) }
+        return .integer(self.countXMASPattern(in: gridRows))
     }
 }
 
@@ -37,6 +39,35 @@ extension Day04 {
                     }
                     return isMatch ? 1 : nil
                 }
+            }
+        }.reduce(0, +)
+    }
+
+    private static func countXMASPattern(
+        in gridRows: [String]
+    ) -> Int {
+        let columns = gridRows.first?.count ?? 0
+
+        func char(x: Int, y: Int) -> Character? {
+            guard x >= 0, y >= 0, x < gridRows.count, y < columns else { return nil }
+            return gridRows[x][y]
+        }
+
+        func isValidPattern(centerX: Int, centerY: Int) -> Bool {
+            guard char(x: centerX, y: centerY) == "A" else { return false }
+            let topLeft = char(x: centerX - 1, y: centerY - 1)
+            let topRight = char(x: centerX - 1, y: centerY + 1)
+            let bottomLeft = char(x: centerX + 1, y: centerY - 1)
+            let bottomRight = char(x: centerX + 1, y: centerY + 1)
+
+            let pattern1 = (topLeft == "M" && bottomRight == "S") || (topLeft == "S" && bottomRight == "M")
+            let pattern2 = (topRight == "M" && bottomLeft == "S") || (topRight == "S" && bottomLeft == "M")
+            return pattern1 && pattern2
+        }
+
+        return (1..<gridRows.count-1).flatMap { rowIndex in
+            (1..<columns-1).compactMap { columnIndex -> Int? in
+                isValidPattern(centerX: rowIndex, centerY: columnIndex) ? 1 : nil
             }
         }.reduce(0, +)
     }
