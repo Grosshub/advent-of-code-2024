@@ -41,7 +41,6 @@ struct Day03: DayExecutable {
                 )
             }
             return .integer(totalSum)
-            
         } catch {
             return .error(.invalidInput)
         }

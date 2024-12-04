@@ -35,7 +35,7 @@ extension Day02 {
         let withinRange = differences.allSatisfy { abs($0) >= 1 && abs($0) <= 3 }
         return withinRange && (differences.allSatisfy { $0 > 0 } || differences.allSatisfy { $0 < 0 })
     }
-    
+
     private static func isSafeWithRemoval(_ reports: [Int]) -> Bool {
         if self.isSafe(reports) { return true }
         for index in reports.indices {
