@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		875B5E522D00537600FD9C91 /* InputDay04.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875B5E512D00537600FD9C91 /* InputDay04.swift */; };
+		875B5E542D00545800FD9C91 /* Day04.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875B5E532D00545800FD9C91 /* Day04.swift */; };
+		875B5E572D00660800FD9C91 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875B5E562D00660800FD9C91 /* String+Extensions.swift */; };
 		87E4B3212CFE5BE900434898 /* DayExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31A2CFE5BE900434898 /* DayExecutor.swift */; };
 		87E4B3222CFE5BE900434898 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31C2CFE5BE900434898 /* Day.swift */; };
 		87E4B3232CFE5BE900434898 /* Day01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E4B31D2CFE5BE900434898 /* Day01.swift */; };
@@ -32,6 +35,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		875B5E512D00537600FD9C91 /* InputDay04.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDay04.swift; sourceTree = "<group>"; };
+		875B5E532D00545800FD9C91 /* Day04.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day04.swift; sourceTree = "<group>"; };
+		875B5E562D00660800FD9C91 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		87ACF77C2CFE5B520083F153 /* aoc-2024 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "aoc-2024"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87E4B31A2CFE5BE900434898 /* DayExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayExecutor.swift; sourceTree = "<group>"; };
 		87E4B31C2CFE5BE900434898 /* Day.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -56,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		875B5E552D0065F200FD9C91 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				875B5E562D00660800FD9C91 /* String+Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		87ACF7732CFE5B510083F153 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +101,7 @@
 				87E4B31D2CFE5BE900434898 /* Day01.swift */,
 				87E4B32A2CFE748E00434898 /* Day02.swift */,
 				87E4B32E2CFEFB7800434898 /* Day03.swift */,
+				875B5E532D00545800FD9C91 /* Day04.swift */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -94,6 +109,7 @@
 		87E4B3202CFE5BE900434898 /* aoc-2024 */ = {
 			isa = PBXGroup;
 			children = (
+				875B5E552D0065F200FD9C91 /* Utils */,
 				87E4B3272CFE647F00434898 /* Inputs */,
 				87E4B31B2CFE5BE900434898 /* Handlers */,
 				87E4B31E2CFE5BE900434898 /* Days */,
@@ -108,6 +124,7 @@
 				87E4B3282CFE648F00434898 /* InputDay01.swift */,
 				87E4B32C2CFE74BB00434898 /* InputDay02.swift */,
 				87E4B3302CFEFBF100434898 /* InputDay03.swift */,
+				875B5E512D00537600FD9C91 /* InputDay04.swift */,
 				87E4B3322CFEFC2100434898 /* InputDay.swift */,
 			);
 			path = Inputs;
@@ -172,12 +189,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				87E4B3242CFE5BE900434898 /* main.swift in Sources */,
+				875B5E572D00660800FD9C91 /* String+Extensions.swift in Sources */,
 				87E4B3232CFE5BE900434898 /* Day01.swift in Sources */,
 				87E4B32D2CFE74BB00434898 /* InputDay02.swift in Sources */,
 				87E4B32B2CFE748E00434898 /* Day02.swift in Sources */,
 				87E4B3212CFE5BE900434898 /* DayExecutor.swift in Sources */,
 				87E4B3332CFEFC2100434898 /* InputDay.swift in Sources */,
+				875B5E522D00537600FD9C91 /* InputDay04.swift in Sources */,
 				87E4B3222CFE5BE900434898 /* Day.swift in Sources */,
+				875B5E542D00545800FD9C91 /* Day04.swift in Sources */,
 				87E4B3292CFE648F00434898 /* InputDay01.swift in Sources */,
 				87E4B3312CFEFBF100434898 /* InputDay03.swift in Sources */,
 				87E4B32F2CFEFB7800434898 /* Day03.swift in Sources */,
