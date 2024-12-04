@@ -26,21 +26,37 @@ extension Day04 {
         let columns = gridRows.first?.count ?? 0
         let directions = [(0, 1), (1, 0), (1, 1), (1, -1), (0, -1), (-1, 0), (-1, -1), (-1, 1)]
 
-        return gridRows.indices.flatMap { rowIndex -> [Int] in
-            (0..<columns).flatMap { columnIndex -> [Int] in
-                directions.compactMap { direction -> Int? in
-                    var coordinates = (x: rowIndex, y: columnIndex)
-                    let isMatch = targetLetters.allSatisfy { letter -> Bool in
-                        let validPosition = coordinates.x >= 0 && coordinates.x < gridRows.count && coordinates.y >= 0 && coordinates.y < columns
-                        guard validPosition && gridRows[coordinates.x][coordinates.y] == letter else { return false }
-                        coordinates.x += direction.0
-                        coordinates.y += direction.1
-                        return true
-                    }
-                    return isMatch ? 1 : nil
+        func isWithinBounds(x: Int, y: Int) -> Bool {
+            x >= 0 && y >= 0 && x < gridRows.count && y < columns
+        }
+
+        func char(x: Int, y: Int) -> Character? {
+            guard isWithinBounds(x: x, y: y) else { return nil }
+            return gridRows[x][gridRows[x].index(gridRows[x].startIndex, offsetBy: y)]
+        }
+
+        func matchesWord(startX: Int, startY: Int, direction: (Int, Int)) -> Bool {
+            var coordinates = (x: startX, y: startY)
+            return targetLetters.allSatisfy { letter in
+                guard
+                    let currentChar = char(x: coordinates.x, y: coordinates.y),
+                    currentChar == letter
+                else {
+                    return false
                 }
+                coordinates.x += direction.0
+                coordinates.y += direction.1
+                return true
             }
-        }.reduce(0, +)
+        }
+
+        return gridRows.indices.reduce(0) { totalMatches, rowIndex in
+            totalMatches + (0..<columns).reduce(0) { columnMatches, columnIndex in
+                columnMatches + directions.filter {
+                    matchesWord(startX: rowIndex, startY: columnIndex, direction: $0)
+                }.count
+            }
+        }
     }
 
     private static func countXMASPattern(
