@@ -21,16 +21,15 @@ struct Day05: DayExecutable {
 
     static func runPart2(_ input: any InputProviding) -> DayResult {
         let (dependencyGraph, pageUpdates) = self.parse(input.raw)
-        let middlePageSum = pageUpdates
+        let sortedMiddlePageSum = pageUpdates
             .filter { !self.isValidOrder($0, in: dependencyGraph) }
             .compactMap { pageUpdate -> Int? in
                 let sortedPageUpdate = self.sort(pageUpdate, with: dependencyGraph)
                 guard !sortedPageUpdate.isEmpty else { return nil }
-                let middlePageIndex = sortedPageUpdate.count / 2
-                return sortedPageUpdate[middlePageIndex]
+                return sortedPageUpdate[sortedPageUpdate.count / 2]
             }
             .reduce(0, +)
-        return .integer(middlePageSum)
+        return .integer(sortedMiddlePageSum)
     }
 }
 
@@ -38,10 +37,15 @@ extension Day05 {
     private static func parse(
         _ input: String
     ) -> (DependencyGraph, PageUpdates) {
-        let sections = input.split(separator: "\n\n")
-        guard sections.count == 2 else { return ([:], []) }
+        let inputParts = input.split(separator: "\n\n")
+        guard
+            let rulesPart = inputParts.first,
+            let updatesPart = inputParts.dropFirst().first
+        else {
+            return (DependencyGraph(), PageUpdates())
+        }
 
-        let dependencyGraph = sections[0]
+        let dependencyGraph = rulesPart
             .split(separator: "\n")
             .reduce(into: DependencyGraph()) { pageDependencies, dependencyRule in
                 let dependencyPair = dependencyRule
@@ -51,7 +55,7 @@ extension Day05 {
                 pageDependencies[dependencyPair[0], default: []].insert(dependencyPair[1])
             }
 
-        let pageUpdates = sections[1]
+        let pageUpdates = updatesPart
             .split(separator: "\n")
             .map { $0.split(separator: ",").compactMap { Int($0) } }
 
