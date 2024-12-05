@@ -13,7 +13,7 @@ struct Day05: DayExecutable {
     static func runPart1(_ input: InputProviding) -> DayResult {
         let (dependencyGraph, pageUpdates) = self.parse(input.raw)
         let middlePageSum = pageUpdates
-            .filter { self.isValidOrder($0, dependencyGraph: dependencyGraph) }
+            .filter { self.isValidOrder($0, in: dependencyGraph) }
             .map { $0[$0.count / 2] }
             .reduce(0, +)
         return .integer(middlePageSum)
@@ -22,9 +22,9 @@ struct Day05: DayExecutable {
     static func runPart2(_ input: any InputProviding) -> DayResult {
         let (dependencyGraph, pageUpdates) = self.parse(input.raw)
         let middlePageSum = pageUpdates
-            .filter { !self.isValidOrder($0, dependencyGraph: dependencyGraph) }
+            .filter { !self.isValidOrder($0, in: dependencyGraph) }
             .compactMap { pageUpdate -> Int? in
-                let sortedPageUpdate = self.sort(pageUpdate, dependencyGraph: dependencyGraph)
+                let sortedPageUpdate = self.sort(pageUpdate, with: dependencyGraph)
                 guard !sortedPageUpdate.isEmpty else { return nil }
                 let middlePageIndex = sortedPageUpdate.count / 2
                 return sortedPageUpdate[middlePageIndex]
@@ -43,24 +43,28 @@ extension Day05 {
 
         let dependencyGraph = sections[0]
             .split(separator: "\n")
-            .reduce(into: DependencyGraph()) { graph, rule in
-                let pair = rule.split(separator: "|").compactMap { Int($0) }
-                guard pair.count == 2 else { return }
-                graph[pair[0], default: []].insert(pair[1])
+            .reduce(into: DependencyGraph()) { pageDependencies, dependencyRule in
+                let dependencyPair = dependencyRule
+                    .split(separator: "|")
+                    .compactMap { Int($0) }
+                guard dependencyPair.count == 2 else { return }
+                pageDependencies[dependencyPair[0], default: []].insert(dependencyPair[1])
             }
 
         let pageUpdates = sections[1]
             .split(separator: "\n")
             .map { $0.split(separator: ",").compactMap { Int($0) } }
+
         return (dependencyGraph, pageUpdates)
     }
 
     private static func sort(
         _ pageUpdate: PageUpdate,
-        dependencyGraph: DependencyGraph
+        with dependencyGraph: DependencyGraph
     ) -> PageUpdate {
         var dependencyCount: DependencyCount = pageUpdate.reduce(into: [:]) { $0[$1] = 0 }
         var dependentPagesMap = DependentPagesMap()
+
         pageUpdate.forEach { page in
             dependencyGraph[page]?
                 .filter { pageUpdate.contains($0) }
@@ -72,6 +76,7 @@ extension Day05 {
 
         var readyPages: PageUpdate = pageUpdate.filter { dependencyCount[$0] == 0 }
         var sortedPages: PageUpdate = []
+
         while let currentPage = readyPages.first {
             readyPages.removeFirst()
             sortedPages.append(currentPage)
@@ -83,12 +88,13 @@ extension Day05 {
                     }
                 }
         }
+
         return sortedPages.count == pageUpdate.count ? sortedPages : []
     }
 
     private static func isValidOrder(
         _ pageUpdate: PageUpdate,
-        dependencyGraph: DependencyGraph
+        in dependencyGraph: DependencyGraph
     ) -> Bool {
         pageUpdate
             .enumerated()
