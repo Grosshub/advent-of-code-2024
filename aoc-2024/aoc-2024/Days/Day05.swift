@@ -52,7 +52,6 @@ extension Day05 {
         let pageUpdates = sections[1]
             .split(separator: "\n")
             .map { $0.split(separator: ",").compactMap { Int($0) } }
-
         return (dependencyGraph, pageUpdates)
     }
 
@@ -61,8 +60,7 @@ extension Day05 {
         dependencyGraph: DependencyGraph
     ) -> PageUpdate {
         var dependencyCount: DependencyCount = pageUpdate.reduce(into: [:]) { $0[$1] = 0 }
-        var dependentPagesMap: DependentPagesMap = [:]
-
+        var dependentPagesMap = DependentPagesMap()
         pageUpdate.forEach { page in
             dependencyGraph[page]?
                 .filter { pageUpdate.contains($0) }
@@ -71,19 +69,19 @@ extension Day05 {
                     dependentPagesMap[page, default: []].append(dependency)
                 }
         }
+
         var readyPages: PageUpdate = pageUpdate.filter { dependencyCount[$0] == 0 }
         var sortedPages: PageUpdate = []
-        while !readyPages.isEmpty {
-            let currentPage = readyPages.removeFirst()
+        while let currentPage = readyPages.first {
+            readyPages.removeFirst()
             sortedPages.append(currentPage)
-            if let dependentPages = dependentPagesMap[currentPage] {
-                for dependentPage in dependentPages {
+            dependentPagesMap[currentPage]?
+                .forEach { dependentPage in
                     dependencyCount[dependentPage, default: 0] -= 1
                     if dependencyCount[dependentPage] == 0 {
                         readyPages.append(dependentPage)
                     }
                 }
-            }
         }
         return sortedPages.count == pageUpdate.count ? sortedPages : []
     }
