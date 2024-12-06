@@ -23,6 +23,7 @@ struct Day06: DayExecutable {
 
         return .integer(result)
     }
+
     static func runPart2(_ input: any InputProviding) -> DayResult {
         let grid = input.raw
             .split(separator: "\n")
@@ -43,6 +44,8 @@ struct Day06: DayExecutable {
     }
 }
 
+// MARK: - Helpers
+
 extension Day06 {
     private static func tracePath(
         from initialState: MovementState,
@@ -54,6 +57,7 @@ extension Day06 {
 
         while visitedStates.insert(currentState).inserted {
             path.append(currentState)
+
             let nextPosition = currentState.position.move(in: currentState.direction)
             if !grid.isValidPosition(nextPosition) { break }
 
