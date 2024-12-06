@@ -6,7 +6,7 @@
 import Foundation
 
 struct Day03: DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult {
+    static func runPart1(_ input: any InputProviding) -> DayResult {
         do {
             return .integer(
                 try self.calculateMulSum(

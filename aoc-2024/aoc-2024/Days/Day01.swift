@@ -4,7 +4,7 @@
 //
 
 struct Day01: DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult {
+    static func runPart1(_ input: any InputProviding) -> DayResult {
         let (left, right) = input.raw
             .split(separator: "\n")
             .reduce(into: ([Int](), [Int]())) { result, line in

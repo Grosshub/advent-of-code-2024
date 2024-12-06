@@ -10,7 +10,7 @@ typealias DependencyCount = [Int: Int]
 typealias DependentPagesMap = [Int: PageUpdate]
 
 struct Day05: DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult {
+    static func runPart1(_ input: any InputProviding) -> DayResult {
         let (dependencyGraph, pageUpdates) = self.parse(input.raw)
         let middlePageSum = pageUpdates
             .filter { self.isValidOrder($0, in: dependencyGraph) }

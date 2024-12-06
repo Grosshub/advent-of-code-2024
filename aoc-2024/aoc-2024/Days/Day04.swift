@@ -4,7 +4,7 @@
 //
 
 struct Day04: DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult {
+    static func runPart1(_ input: any InputProviding) -> DayResult {
         let gridRows = input.raw.split(separator: "\n").map(String.init)
         guard !gridRows.isEmpty else { return .error(.invalidInput )}
         return .integer(self.count(word: "XMAS", in: gridRows))

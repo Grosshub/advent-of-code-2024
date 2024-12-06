@@ -6,8 +6,8 @@
 import Foundation
 
 protocol DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult
-    static func runPart2(_ input: InputProviding) -> DayResult
+    static func runPart1(_ input: any InputProviding) -> DayResult
+    static func runPart2(_ input: any InputProviding) -> DayResult
 }
 
 enum DayResult {
@@ -23,7 +23,7 @@ enum DayError: Error {
 
 // Use as a template
 struct Day00: DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult {
+    static func runPart1(_ input: any InputProviding) -> DayResult {
         .error(.notImplemented)
     }
 

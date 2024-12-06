@@ -4,7 +4,7 @@
 //
 
 struct Day02: DayExecutable {
-    static func runPart1(_ input: InputProviding) -> DayResult {
+    static func runPart1(_ input: any InputProviding) -> DayResult {
         let reports = input.raw
             .split(separator: "\n")
             .map { reportLine in
