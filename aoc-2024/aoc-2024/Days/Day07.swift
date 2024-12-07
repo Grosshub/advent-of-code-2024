@@ -9,37 +9,42 @@ struct Day07: DayExecutable {
     private static var memo: [String: Bool] = [:]
 
     static func runPart1(_ input: any InputProviding) -> DayResult {
-        let result = input.raw
-            .components(separatedBy: .newlines)
-            .filter { !$0.isEmpty }
-            .compactMap { line -> Int? in
-                guard let (targetNumber, numbers) = self.parse(line) else { return nil }
-                self.resetMemo()
-                return self.canAchieveTarget(from: numbers, targetNumber: targetNumber) ? targetNumber : nil
-            }
-            .reduce(0, +)
-
-        return .integer(result)
+        .integer(
+            self.run(input: input)
+        )
     }
 
     static func runPart2(_ input: any InputProviding) -> DayResult {
-        let result = input.raw
-            .components(separatedBy: .newlines)
-            .filter { !$0.isEmpty }
-            .compactMap { line -> Int? in
-                guard let (targetNumber, numbers) = self.parse(line) else { return nil }
-                self.resetMemo()
-                return self.canAchieveTarget(from: numbers, targetNumber: targetNumber, allowConcatenation: true) ? targetNumber : nil
-            }
-            .reduce(0, +)
-
-        return .integer(result)
+        .integer(
+            self.run(input: input, allowConcatenation: true)
+        )
     }
 }
 
 // MARK: - Helpers
 
 extension Day07 {
+    private static func run(
+        input: any InputProviding,
+        allowConcatenation: Bool = false
+    ) -> Int {
+        input.raw
+            .components(separatedBy: .newlines)
+            .filter { !$0.isEmpty }
+            .compactMap { line -> Int? in
+                guard let (targetNumber, numbers) = self.parse(line) else { return nil }
+                self.resetMemo()
+                return self.canAchieveTarget(
+                    from: numbers,
+                    targetNumber: targetNumber,
+                    allowConcatenation: allowConcatenation
+                )
+                ? targetNumber
+                : nil
+            }
+            .reduce(0, +)
+    }
+
     private static func parse(
         _ line: String
     ) -> (targetNumber: Int, numbers: [Int])? {
@@ -92,7 +97,7 @@ extension Day07 {
         if let cachedResult = self.getCachedResult(for: memoKey) { return cachedResult }
         guard let next = numbers[safe: index] else { return false }
 
-        // Explore addition of current and next numbers
+        // Addition
         if self.explorePaths(
             from: numbers,
             targetNumber: targetNumber,
@@ -104,7 +109,7 @@ extension Day07 {
             return true
         }
 
-        // Explore multiplication of current and next numbers
+        // Multiplication
         if self.explorePaths(
             from: numbers,
             targetNumber: targetNumber,
@@ -117,7 +122,7 @@ extension Day07 {
         }
 
         if allowConcatenation {
-            // Explore concatenation of current and next numbers
+            // Concatenation
             if self.explorePaths(
                 from: numbers,
                 targetNumber: targetNumber,
