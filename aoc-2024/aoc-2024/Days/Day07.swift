@@ -19,11 +19,7 @@ struct Day07: DayExecutable {
             self.run(input: input, allowConcatenation: true)
         )
     }
-}
 
-// MARK: - Helpers
-
-extension Day07 {
     private static func run(
         input: any InputProviding,
         allowConcatenation: Bool = false
@@ -32,7 +28,21 @@ extension Day07 {
             .components(separatedBy: .newlines)
             .filter { !$0.isEmpty }
             .compactMap { line -> Int? in
-                guard let (targetNumber, numbers) = self.parse(line) else { return nil }
+                let parts = line
+                    .components(separatedBy: ":")
+                    .map { $0.trimmingCharacters(in: .whitespaces) }
+
+                guard let targetNumbersPart = parts.first,
+                      let numbersListPart = parts.dropFirst().first,
+                      let targetNumber = Int(targetNumbersPart)
+                else {
+                    return nil
+                }
+
+                let numbers = numbersListPart
+                    .split(separator: " ")
+                    .compactMap { Int($0) }
+
                 self.resetMemo()
                 return self.canAchieveTarget(
                     from: numbers,
@@ -44,28 +54,11 @@ extension Day07 {
             }
             .reduce(0, +)
     }
+}
 
-    private static func parse(
-        _ line: String
-    ) -> (targetNumber: Int, numbers: [Int])? {
-        let parts = line
-            .components(separatedBy: ":")
-            .map { $0.trimmingCharacters(in: .whitespaces) }
+// MARK: - Helpers
 
-        guard let targetNumbersPart = parts.first,
-              let numbersListPart = parts.dropFirst().first,
-              let targetNumber = Int(targetNumbersPart)
-        else {
-            return nil
-        }
-
-        let numbers = numbersListPart
-            .split(separator: " ")
-            .compactMap { Int($0) }
-
-        return (targetNumber, numbers)
-    }
-
+extension Day07 {
     private static func canAchieveTarget(
         from numbers: [Int],
         targetNumber: Int,
