@@ -47,7 +47,9 @@ struct Day07: DayExecutable {
                 return self.canAchieveTarget(
                     from: numbers,
                     targetNumber: targetNumber,
-                    allowConcatenation: allowConcatenation
+                    allowConcatenation: allowConcatenation,
+                    current: numbers[0],
+                    index: 1
                 )
                 ? targetNumber
                 : nil
@@ -60,21 +62,6 @@ struct Day07: DayExecutable {
 
 extension Day07 {
     private static func canAchieveTarget(
-        from numbers: [Int],
-        targetNumber: Int,
-        allowConcatenation: Bool = false
-    ) -> Bool {
-        self.resetMemo()
-        return self.explorePaths(
-            from: numbers,
-            targetNumber: targetNumber,
-            allowConcatenation: allowConcatenation,
-            current: numbers[0],
-            index: 1
-        )
-    }
-
-    private static func explorePaths(
         from numbers: [Int],
         targetNumber: Int,
         allowConcatenation: Bool,
@@ -91,7 +78,7 @@ extension Day07 {
         guard let next = numbers[safe: index] else { return false }
 
         // Addition
-        if self.explorePaths(
+        if self.canAchieveTarget(
             from: numbers,
             targetNumber: targetNumber,
             allowConcatenation: allowConcatenation,
@@ -103,7 +90,7 @@ extension Day07 {
         }
 
         // Multiplication
-        if self.explorePaths(
+        if self.canAchieveTarget(
             from: numbers,
             targetNumber: targetNumber,
             allowConcatenation: allowConcatenation,
@@ -116,7 +103,7 @@ extension Day07 {
 
         if allowConcatenation {
             // Concatenation
-            if self.explorePaths(
+            if self.canAchieveTarget(
                 from: numbers,
                 targetNumber: targetNumber,
                 allowConcatenation: allowConcatenation,
